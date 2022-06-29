@@ -33,7 +33,7 @@ defmodule LenraCommon.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.10"},
+      {:phoenix, "~> 1.5.9"},
       {:ecto_sql, "~> 3.4"},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
