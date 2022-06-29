@@ -4,13 +4,13 @@ on:
   workflow_dispatch:
     inputs:
       version:
-        description: 'Lenra Component Version'
+        description: "Lenra Common Version"
         required: true
       release_notes:
-        description: 'Lenra Component Release notes'
+        description: "Lenra Common Release notes"
         required: false
       origin:
-        description: 'Label of the dependency to change version.'
+        description: "Label of the dependency to change version."
         required: true
 
 jobs:
@@ -22,14 +22,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          submodules: 'true'
+          submodules: "true"
       - name: Setup yq
         id: setup-yq
         uses: shiipou/setup-yq-action@v2.0.2
       - name: create_pr
         uses: lenra-io/create-or-update-pr-action@v1.1.0
         with:
-          name: 'Update dependencies'
+          name: "Update dependencies"
           token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
           script: |
             if [[ "${{ github.event.inputs.origin }}" == "components-api" ]]; then
@@ -42,9 +42,9 @@ jobs:
               >&2 echo "Error: ${{ github.event.inputs.origin }} not yet implemented"
               exit 1
             fi
-            
+
             RELEASE_NOTES="${{ github.event.inputs.release_notes }}"
             RELEASE_TYPE="${RELEASE_NOTES/:*}"
-            
+
             git commit -m "${RELEASE_TYPE}: Upgrade ${{ github.event.inputs.origin }} to ${{ github.event.inputs.version }}
             ${{ github.event.inputs.release_notes }}"

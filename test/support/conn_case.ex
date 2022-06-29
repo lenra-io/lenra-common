@@ -23,16 +23,6 @@ defmodule LenraCommonWeb.ConnCase do
       import Plug.Conn
       import Phoenix.ConnTest
       import LenraCommonWeb.ConnCase
-
-      alias LenraCommonWeb.Router.Helpers, as: Routes
-
-      # The default endpoint for testing
-      @endpoint LenraCommonWeb.Endpoint
     end
-  end
-
-  setup tags do
-    LenraCommon.DataCase.setup_sandbox(tags)
-    {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

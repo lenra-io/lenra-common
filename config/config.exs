@@ -7,9 +7,6 @@
 # General application configuration
 import Config
 
-config :lenra_common,
-  ecto_repos: [LenraCommon.Repo]
-
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
