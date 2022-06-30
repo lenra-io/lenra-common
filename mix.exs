@@ -48,7 +48,6 @@ defmodule LenraCommon.MixProject do
   defp aliases do
     [
       setup: ["deps.get", "ecto.setup"],
-      test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
   end
