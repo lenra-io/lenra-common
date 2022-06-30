@@ -24,7 +24,6 @@ defmodule LenraCommonWeb do
       import LenraCommonWeb.ControllerHelpers
       import Plug.Conn
 
-      plug(:put_view, LenraCommonWeb.BaseView)
       action_fallback(LenraCommonWeb.FallbackController)
     end
   end
@@ -40,15 +39,14 @@ defmodule LenraCommonWeb do
         only: [get_flash: 1, get_flash: 2, view_module: 1, view_template: 1]
 
       # Include shared imports and aliases for views
-      unquote(view_helpers())
+
     end
   end
 
-  defp view_helpers do
+  def view_helpers do
     quote do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
-      import LenraCommonWeb.ErrorHelpers
     end
   end
 

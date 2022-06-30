@@ -14,15 +14,15 @@ defmodule LenraCommon.MixProject do
     ]
   end
 
-  # Configuration for the OTP application.
-  #
-  # Type `mix help compile.app` for more information.
-  def application do
-    [
-      mod: {LenraCommon.Application, []},
-      extra_applications: [:logger, :runtime_tools]
-    ]
-  end
+  # # Configuration for the OTP application.
+  # #
+  # # Type `mix help compile.app` for more information.
+  # def application do
+  #   [
+  #     mod: {LenraCommon.Application, []},
+  #     extra_applications: [:logger, :runtime_tools, :phoenix]
+  #   ]
+  # end
 
   # Specifies which paths to compile per environment.
   defp elixirc_paths(:test), do: ["lib", "test/support"]
@@ -34,7 +34,6 @@ defmodule LenraCommon.MixProject do
   defp deps do
     [
       {:phoenix, "~> 1.5.9"},
-      {:ecto_sql, "~> 3.4"},
       {:credo, "~> 1.6", only: [:dev], runtime: false},
       {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
     ]
