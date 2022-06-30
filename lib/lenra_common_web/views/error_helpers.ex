@@ -27,8 +27,6 @@ defmodule LenraCommonWeb.ErrorHelpers do
 
         %{code: 0, message: message}
       end
-
     end
   end
-
 end

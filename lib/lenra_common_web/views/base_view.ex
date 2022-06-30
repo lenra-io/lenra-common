@@ -1,5 +1,4 @@
 defmodule LenraCommonWeb.BaseView do
-
   defmacro __using__(_opts) do
     quote do
       require Logger
@@ -26,5 +25,4 @@ defmodule LenraCommonWeb.BaseView do
       end
     end
   end
-
 end
