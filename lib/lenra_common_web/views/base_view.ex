@@ -2,10 +2,6 @@ defmodule LenraCommonWeb.BaseView do
   use LenraCommonWeb, :view
   require Logger
 
-  # def render("success.json", %{}) do
-  #   %{"ok" => "200"}
-  # end
-
   def render("success.json", %{data: data}) do
     %{
       "data" => data
