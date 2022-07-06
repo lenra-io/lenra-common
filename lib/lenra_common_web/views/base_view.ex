@@ -1,18 +1,28 @@
 defmodule LenraCommonWeb.BaseView do
-  use LenraCommonWeb, :view
-  require Logger
+  defmacro __using__(_opts) do
+    quote do
+      require Logger
 
-  def render("success.json", %{data: data}) do
-    %{
-      "data" => data
-    }
-  end
+      # def render("success.json", %{}) do
+      #   %{"ok" => "200"}
+      # end
 
-  def render("success.json", _no_data) do
-    %{}
-  end
+      def render("success.json", %{data: data}) do
+        %{
+          "success" => true,
+          "data" => data
+        }
+      end
 
-  def render("error.json", %{error: error}) do
-    %{"error" => translate_error(error)}
+      def render("success.json", _no_data) do
+        %{
+          "success" => true
+        }
+      end
+
+      def render("error.json", %{errors: errors}) do
+        %{"errors" => translate_errors(errors), "success" => false}
+      end
+    end
   end
 end

@@ -7,64 +7,35 @@ defmodule LenraCommonWeb.ControllerHelpers do
     error
     |> case do
       %{valid?: false} ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
+        Plug.Conn.put_status(conn, 400)
 
-      %LenraCommon.Errors.TechnicalError{reason: :error_404} ->
-        conn
-        |> Plug.Conn.put_status(404)
-        |> add_error(error)
+      :error_404 ->
+        Plug.Conn.put_status(conn, 404)
 
       :error_500 ->
-        conn
-        |> Plug.Conn.put_status(500)
-        |> add_error(LenraCommon.Errors.error_500())
+        Plug.Conn.put_status(conn, 500)
 
       :forbidden ->
-        conn
-        |> Plug.Conn.put_status(403)
-        |> add_error(LenraCommon.Errors.forbidden())
-
-      %LenraCommon.Errors.BusinessError{} ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
-
-      %LenraCommon.Errors.TechnicalError{} ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
-
-      %LenraCommon.Errors.DevError{} ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
+        Plug.Conn.put_status(conn, 403)
 
       _error ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(LenraCommon.Errors.bad_request())
+        Plug.Conn.put_status(conn, 400)
     end
+    |> add_error(error)
   end
 
   def add_error(%Plug.Conn{} = conn, error) do
-    Plug.Conn.assign(conn, :error, error)
-  end
-
-  def assign_data(%Plug.Conn{} = conn, value) do
-    Plug.Conn.assign(conn, :data, value)
+    error_list = Map.get(conn.assigns, :error, [])
+    Plug.Conn.assign(conn, :error, [error | error_list])
   end
 
   def assign_data(%Plug.Conn{} = conn, key, value) do
-    conn =
-      if Map.has_key?(conn.assigns, :data) do
-        conn
-      else
-        Plug.Conn.assign(conn, :data, %{})
-      end
+    data_map = Map.get(conn.assigns, :data, %{})
+    Plug.Conn.assign(conn, :data, Map.put(data_map, key, value))
+  end
 
-    %{conn | assigns: put_in(conn.assigns, [:data, key], value)}
+  def assign_all(%Plug.Conn{} = conn, value) do
+    Plug.Conn.assign(conn, :data, value)
   end
 
   def reply(%Plug.Conn{assigns: %{error: _}} = conn) do
