@@ -1,6 +1,6 @@
 defmodule LenraCommon.Errors.Error do
   @moduledoc """
-    LenraCommon.Errors.Error define basic error struct for Lenra server.
+    LenraCommon.Errors.Error defines a basic error struct for Lenra server.
   """
   defmacro __using__(_opts) do
     quote do
