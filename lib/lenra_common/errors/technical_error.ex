@@ -3,7 +3,7 @@ defmodule LenraCommon.Errors.TechnicalError do
     LenraCommon.Errors.TechnicalError creates all error functions based on the `@errors` list.
     For each error in the list, this module creates two function,
     one that creates and returns a TechnicalError struct,
-    the second create TechnicalError struct and return it into an tuple.
+    the second that creates a TechnicalError struct and returns it into an tuple.
   """
   use LenraCommon.Errors.Error
 
