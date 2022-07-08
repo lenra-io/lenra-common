@@ -1,31 +1,35 @@
 defmodule LenraCommon.Errors.BusinessError do
-  @type t() :: %__MODULE__{
-          message: String.t(),
-          reason: atom(),
-          data: any()
-        }
+  @moduledoc """
+    LenraCommon.Errors.BusinessError creates all error functions based on the `@errors` list.
+    For each error in the list, this module creates two function,
+    one that creates and returns a BusinessError struct,
+    the second that creates a BusinessError struct and returns it into a tuple.
+  """
 
-  @enforce_keys [:message, :reason]
-  defexception [:message, :reason, :data]
+  use LenraCommon.Errors.Error
 
   @errors [
     {:forbidden, "Forbidden"}
   ]
 
   Enum.each(@errors, fn {reason, message} ->
-    def unquote(reason)() do
-      %__MODULE__{
-        message: unquote(message),
-        reason: unquote(reason)
-      }
-    end
+    fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
 
-    def unquote(reason)(metadata) do
+    def unquote(reason)(metadata \\ %{}) do
       %__MODULE__{
         message: unquote(message),
         reason: unquote(reason),
-        data: metadata
+        metadata: metadata
       }
+    end
+
+    def unquote(fn_tuple)(metadata \\ %{}) do
+      {:error,
+       %__MODULE__{
+         message: unquote(message),
+         reason: unquote(reason),
+         metadata: metadata
+       }}
     end
   end)
 end
