@@ -2,7 +2,7 @@ defmodule LenraCommon.Errors.BusinessError do
   @moduledoc """
     LenraCommon.Errors.BusinessError creates all error functions based on the `@errors` list.
     For each error in the list, this module creates two function,
-    one that create and return BusinessError struct,
+    one that creates and returns a BusinessError struct,
     the second create BusinessError struct and return it into an tuple.
   """
 
