@@ -1,7 +1,7 @@
 defmodule LenraCommon.Errors.TechnicalError do
   @moduledoc """
     LenraCommon.Errors.TechnicalError creates all error functions based on the `@errors` list.
-    For each errors in the list this modules create two function,
+    For each error in the list, this module creates two function,
     one that create and return TechnicalError struct,
     the second create TechnicalError struct and return it into an tuple.
   """
