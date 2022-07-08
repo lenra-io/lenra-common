@@ -16,11 +16,6 @@ defmodule LenraCommonWeb.ControllerHelpers do
         |> Plug.Conn.put_status(404)
         |> add_error(error)
 
-      # :error_500 ->
-      #   conn
-      #   |> Plug.Conn.put_status(500)
-      #   |> add_error(LenraCommon.Errors.error_500())
-
       # Returned by bouncer
       :forbidden ->
         conn
