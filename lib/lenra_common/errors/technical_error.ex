@@ -1,12 +1,11 @@
 defmodule LenraCommon.Errors.TechnicalError do
-  @type t() :: %__MODULE__{
-          message: String.t(),
-          reason: atom(),
-          data: any()
-        }
-
-  @enforce_keys [:message, :reason]
-  defexception [:message, :reason, :data]
+  @moduledoc """
+    LenraCommon.Errors.TechnicalError create all error function following the `@errors` list.
+    For each errors in the list this modules create two function,
+    one that create and return TechnicalError struct,
+    the second create TechnicalError struct and return it into an tuple.
+  """
+  use LenraCommon.Errors.Error
 
   @errors [
     {:unknown_error, "Unknown error"},
@@ -16,19 +15,23 @@ defmodule LenraCommon.Errors.TechnicalError do
   ]
 
   Enum.each(@errors, fn {reason, message} ->
-    def unquote(reason)() do
-      %__MODULE__{
-        message: unquote(message),
-        reason: unquote(reason)
-      }
-    end
+    fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
 
-    def unquote(reason)(metadata) do
+    def unquote(reason)(metadata \\ %{}) do
       %__MODULE__{
         message: unquote(message),
         reason: unquote(reason),
-        data: metadata
+        metadata: metadata
       }
+    end
+
+    def unquote(fn_tuple)(metadata \\ %{}) do
+      {:error,
+       %__MODULE__{
+         message: unquote(message),
+         reason: unquote(reason),
+         metadata: metadata
+       }}
     end
   end)
 end
