@@ -14,6 +14,10 @@ defmodule LenraCommon.Errors.TechnicalError do
     {:error_500, "Internal server error."}
   ]
 
+  def __errors__ do
+    @errors
+  end
+
   Enum.each(@errors, fn {reason, message} ->
     fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
 
