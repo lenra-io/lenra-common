@@ -1,4 +1,4 @@
-defmodule LenraCommon.Errors.Error do
+defmodule LenraCommon.Errors.ErrorStruct do
   @moduledoc """
     LenraCommon.Errors.Error defines a basic error struct for Lenra server.
   """

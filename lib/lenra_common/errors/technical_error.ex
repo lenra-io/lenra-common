@@ -5,9 +5,6 @@ defmodule LenraCommon.Errors.TechnicalError do
     one that creates and returns a TechnicalError struct,
     the second that creates a TechnicalError struct and returns it into an tuple.
   """
-  use LenraCommon.Errors.Error
-
-  import LenraCommon.Errors
 
   @errors [
     {:unknown_error, "Unknown error"},
@@ -15,10 +12,10 @@ defmodule LenraCommon.Errors.TechnicalError do
     {:error_404, "Not Found."},
     {:error_500, "Internal server error."}
   ]
+  use LenraCommon.Errors.ErrorStruct
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
   def __errors__ do
     @errors
   end
-
-  gen_errors(@errors, __MODULE__)
 end

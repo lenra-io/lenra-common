@@ -5,17 +5,14 @@ defmodule LenraCommon.Errors.BusinessError do
     one that creates and returns a BusinessError struct,
     the second that creates a BusinessError struct and returns it into a tuple.
   """
-
-  use LenraCommon.Errors.Error
-  import LenraCommon.Errors
-
   @errors [
     {:forbidden, "Forbidden"}
   ]
 
+  use LenraCommon.Errors.ErrorStruct
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
+
   def __errors__ do
     @errors
   end
-
-  gen_errors(@errors, __MODULE__)
 end
