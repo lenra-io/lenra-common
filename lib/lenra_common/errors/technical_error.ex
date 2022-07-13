@@ -7,6 +7,8 @@ defmodule LenraCommon.Errors.TechnicalError do
   """
   use LenraCommon.Errors.Error
 
+  import LenraCommon.Errors
+
   @errors [
     {:unknown_error, "Unknown error"},
     {:bad_request, "Server cannot understand or process the request due to a client-side error."},
@@ -18,24 +20,5 @@ defmodule LenraCommon.Errors.TechnicalError do
     @errors
   end
 
-  Enum.each(@errors, fn {reason, message} ->
-    fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
-
-    def unquote(reason)(metadata \\ %{}) do
-      %__MODULE__{
-        message: unquote(message),
-        reason: unquote(reason),
-        metadata: metadata
-      }
-    end
-
-    def unquote(fn_tuple)(metadata \\ %{}) do
-      {:error,
-       %__MODULE__{
-         message: unquote(message),
-         reason: unquote(reason),
-         metadata: metadata
-       }}
-    end
-  end)
+  gen_errors(@errors, __MODULE__)
 end
