@@ -1,6 +1,7 @@
 defmodule LenraCommon.Errors.ErrorGenerator do
   @moduledoc """
-    LenraCommon.Errors.Error defines a basic error struct for Lenra server.
+    LenraCommon.Errors.ErrorGenerator allows to generate two functions following a list of errors.
+    The first function returns the error structure and the second returns the `{:error, _error_struct}` tuple.
   """
   defmacro __using__(opts) do
     errors = Keyword.get(opts, :errors, [])
