@@ -3,6 +3,8 @@ defmodule LenraCommonWeb.ControllerHelpers do
     ApplicationRunner.ControllerHelpers give some helper functions to assign error/data to the conn and send the response to the view.
   """
 
+  alias LenraCommon.Errors.{BusinessError, TechnicalError}
+
   def assign_error(%Plug.Conn{} = conn, error) do
     error
     |> case do
@@ -20,7 +22,7 @@ defmodule LenraCommonWeb.ControllerHelpers do
       :forbidden ->
         conn
         |> Plug.Conn.put_status(403)
-        |> add_error(LenraCommon.Errors.forbidden())
+        |> add_error(BusinessError.forbidden())
 
       %LenraCommon.Errors.BusinessError{} ->
         conn
@@ -40,7 +42,7 @@ defmodule LenraCommonWeb.ControllerHelpers do
       _error ->
         conn
         |> Plug.Conn.put_status(400)
-        |> add_error(LenraCommon.Errors.bad_request())
+        |> add_error(TechnicalError.bad_request())
     end
   end
 

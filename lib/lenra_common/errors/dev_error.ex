@@ -1,10 +1,9 @@
 defmodule LenraCommon.Errors.DevError do
-  @type t() :: %__MODULE__{
-          message: String.t(),
-          reason: atom(),
-          data: any()
-        }
+  @moduledoc """
+    LenraCommon.Errors.DevError Define the DevError structure.
+    This is the error to raise when we are facing an impossible case (a case that should never happen).
+    This error should be caught into sentry.
+  """
 
-  @enforce_keys [:message, :reason]
-  defexception [:message, :reason, :data]
+  use LenraCommon.Errors.ErrorStruct
 end

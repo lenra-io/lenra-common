@@ -5,7 +5,6 @@ defmodule LenraCommon.Errors.TechnicalError do
     one that creates and returns a TechnicalError struct,
     the second that creates a TechnicalError struct and returns it into an tuple.
   """
-  use LenraCommon.Errors.Error
 
   @errors [
     {:unknown_error, "Unknown error"},
@@ -13,25 +12,10 @@ defmodule LenraCommon.Errors.TechnicalError do
     {:error_404, "Not Found."},
     {:error_500, "Internal server error."}
   ]
+  use LenraCommon.Errors.ErrorStruct
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
-  Enum.each(@errors, fn {reason, message} ->
-    fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
-
-    def unquote(reason)(metadata \\ %{}) do
-      %__MODULE__{
-        message: unquote(message),
-        reason: unquote(reason),
-        metadata: metadata
-      }
-    end
-
-    def unquote(fn_tuple)(metadata \\ %{}) do
-      {:error,
-       %__MODULE__{
-         message: unquote(message),
-         reason: unquote(reason),
-         metadata: metadata
-       }}
-    end
-  end)
+  def __errors__ do
+    @errors
+  end
 end
