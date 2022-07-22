@@ -35,7 +35,8 @@ defmodule LenraCommon.MixProject do
     [
       {:phoenix, "~> 1.5.9"},
       {:credo, "~> 1.6", only: [:dev], runtime: false},
-      {:dialyxir, "~> 1.0", only: [:dev], runtime: false}
+      {:dialyxir, "~> 1.0", only: [:dev], runtime: false},
+      {:jason, "~> 1.2"}
     ]
   end
 
