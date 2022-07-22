@@ -4,6 +4,7 @@ defmodule LenraCommon.Errors.ErrorStruct do
   """
   defmacro __using__(_opts) do
     quote do
+      @derive {Jason.Encoder, only: [:message, :reason, :metadata]}
       @type t() :: %__MODULE__{
               message: String.t(),
               reason: atom(),
