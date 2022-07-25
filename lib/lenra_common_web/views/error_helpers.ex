@@ -8,20 +8,20 @@ defmodule LenraCommonWeb.ErrorHelpers do
     translate_ecto_error(Enum.at(errors, 0))
   end
 
-  def translate_error(%BusinessError{} = err) do
-    BusinessError.message(err)
+  def translate_error(%BusinessError{reason: reason, message: message}) do
+    %{"message" => message, "reason" => reason}
   end
 
-  def translate_error(%TechnicalError{} = err) do
-    TechnicalError.message(err)
+  def translate_error(%TechnicalError{reason: reason, message: message}) do
+    %{"message" => message, "reason" => reason}
   end
 
-  def translate_error(%DevError{} = err) do
-    DevError.message(err)
+  def translate_error(%DevError{reason: reason, message: message}) do
+    %{"message" => message, "reason" => reason}
   end
 
   def translate_error(_err) do
-    "An unknown error occured."
+    %{"message" => "An unknown error occured.", "reason" => "unknow format"}
   end
 
   def translate_ecto_error({field, {msg, opts}}) do

@@ -7,11 +7,11 @@ defmodule LenraCommonWeb.ErrorView do
       # If you want to customize a particular status code
       # for a certain format, you may uncomment below.
       def render(_error, %{reason: reason, message: message}) do
-        %{"error" => message, "reason" => reason}
+        %{"message" => message, "reason" => reason}
       end
 
       def render(_error, _assigns) do
-        %{"error" => "Internal Server Error"}
+        %{"message" => "Internal Server Error", "reason" => "format error"}
       end
 
       # By default, Phoenix returns the status message from
