@@ -5,7 +5,7 @@ defmodule LenraCommonWeb.ErrorHelpers do
   alias LenraCommon.Errors.{BusinessError, DevError, TechnicalError}
 
   def translate_error(%{errors: []}) do
-    raise LenraCommon.Errors.DevError.exception("Ecto changeset errors list should not be empty.")
+    raise DevError.exception("Ecto changeset errors list should not be empty.")
   end
 
   # Get errors from ecto Changeset
