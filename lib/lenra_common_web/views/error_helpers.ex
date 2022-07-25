@@ -26,7 +26,7 @@ defmodule LenraCommonWeb.ErrorHelpers do
   end
 
   def translate_error(_err) do
-    %{"message" => "An unknown error occured.", "reason" => "unknow_format"}
+    %{"message" => "An unknown error occured.", "reason" => "unknown_format"}
   end
 
   defp translate_ecto_error({field, {msg, opts}}) do
