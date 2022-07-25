@@ -13,6 +13,6 @@ defmodule LenraCommonWeb.BaseView do
   end
 
   def render("error.json", %{error: error}) do
-    %{"error" => translate_error(error)}
+    translate_error(error)
   end
 end
