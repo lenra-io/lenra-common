@@ -39,11 +39,9 @@
     In this project we find the controller & views helper as well as the error handling.
     <br />
     <br />
-    <!-- <a href="https://github.com/lenra-io/template-hello-world-node12">View Demo</a>
-    · -->
-    <a href="https://github.com/lenra-io/query-parser/issues">Report Bug</a>
+    <a href="https://github.com/lenra-io/lenra-common/issues">Report Bug</a>
     ·
-    <a href="https://github.com/lenra-io/query-parser/issues">Request Feature</a>
+    <a href="https://github.com/lenra-io/lenra-common/issues">Request Feature</a>
   </p>
 </div>
 
@@ -87,20 +85,20 @@ Distributed under the **MIT** License. See [LICENSE](./LICENSE) for more informa
 
 Lenra - [@lenra_dev](https://twitter.com/lenra_dev) - contact@lenra.io
 
-Project Link: [https://github.com/lenra-io/query-parser](https://github.com/lenra-io/query-parser)
+Project Link: [https://github.com/lenra-io/lenra-common](https://github.com/lenra-io/lenra-common)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/lenra-io/template-hello-world-node12.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/lenra-io/lenra-common.svg?style=for-the-badge
 [contributors-url]: https://github.com/lenra-io/lenra-common/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/lenra-io/template-hello-world-node12.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/lenra-io/lenra-common.svg?style=for-the-badge
 [forks-url]: https://github.com/lenra-io/lenra-common/network/members
-[stars-shield]: https://img.shields.io/github/stars/lenra-io/template-hello-world-node12.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/lenra-io/lenra-common.svg?style=for-the-badge
 [stars-url]: https://github.com/lenra-io/lenra-common/stargazers
-[issues-shield]: https://img.shields.io/github/issues/lenra-io/template-hello-world-node12.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/lenra-io/lenra-common.svg?style=for-the-badge
 [issues-url]: https://github.com/lenra-io/lenra-common/issues
-[license-shield]: https://img.shields.io/github/license/lenra-io/template-hello-world-node12.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/lenra-io/lenra-common.svg?style=for-the-badge
 [license-url]: https://github.com/lenra-io/lenra-common/blob/master/LICENSE.txt
