@@ -50,6 +50,7 @@ defmodule LenraCommonWeb.ControllerHelpers do
     Plug.Conn.assign(conn, :error, error)
   end
 
+  @deprecated "Use reply/2 directly instead"
   def assign_data(%Plug.Conn{} = conn, value) do
     Plug.Conn.assign(conn, :data, value)
   end
@@ -60,5 +61,11 @@ defmodule LenraCommonWeb.ControllerHelpers do
 
   def reply(%Plug.Conn{} = conn) do
     Phoenix.Controller.render(conn, "success.json")
+  end
+
+  def reply(%Plug.Conn{} = conn, data) do
+    conn
+    |> Plug.Conn.assign(:root, data)
+    |> Phoenix.Controller.render("success.json")
   end
 end

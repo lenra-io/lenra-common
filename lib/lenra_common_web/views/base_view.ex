@@ -8,6 +8,10 @@ defmodule LenraCommonWeb.BaseView do
     }
   end
 
+  def render("success.json", %{root: data}) do
+    data
+  end
+
   def render("success.json", _no_data) do
     %{}
   end

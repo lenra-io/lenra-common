@@ -35,3 +35,4 @@ npm-debug.log
 # Ignore Elixir_ls extension folder
 .elixir_ls
 
+.DS_Store
