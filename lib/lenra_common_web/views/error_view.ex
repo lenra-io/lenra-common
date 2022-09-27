@@ -11,6 +11,8 @@ defmodule LenraCommonWeb.ErrorView do
       end
 
       def render(_error, _assigns) do
+        IO.inspect(_error)
+        IO.inspect(_assigns)
         %{"message" => "Internal Server Error", "reason" => "format error"}
       end
 
