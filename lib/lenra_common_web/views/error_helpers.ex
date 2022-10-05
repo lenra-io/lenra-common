@@ -13,16 +13,16 @@ defmodule LenraCommonWeb.ErrorHelpers do
     translate_ecto_error(err)
   end
 
-  def translate_error(%BusinessError{reason: reason, message: message}) do
-    %{"message" => message, "reason" => reason}
+  def translate_error(%BusinessError{reason: reason, message: message, metadata: metadata}) do
+    %{"message" => message, "reason" => reason, "metdata" => metadata}
   end
 
-  def translate_error(%TechnicalError{reason: reason, message: message}) do
-    %{"message" => message, "reason" => reason}
+  def translate_error(%TechnicalError{reason: reason, message: message, metadata: metadata}) do
+    %{"message" => message, "reason" => reason, "metdata" => metadata}
   end
 
-  def translate_error(%DevError{reason: reason, message: message}) do
-    %{"message" => message, "reason" => reason}
+  def translate_error(%DevError{reason: reason, message: message, metadata: metadata}) do
+    %{"message" => message, "reason" => reason, "metdata" => metadata}
   end
 
   def translate_error(_err) do
