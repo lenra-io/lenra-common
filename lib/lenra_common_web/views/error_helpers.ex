@@ -14,15 +14,15 @@ defmodule LenraCommonWeb.ErrorHelpers do
   end
 
   def translate_error(%BusinessError{reason: reason, message: message, metadata: metadata}) do
-    %{"message" => message, "reason" => reason, "metdata" => metadata}
+    %{"message" => message, "reason" => reason, "metadata" => metadata}
   end
 
   def translate_error(%TechnicalError{reason: reason, message: message, metadata: metadata}) do
-    %{"message" => message, "reason" => reason, "metdata" => metadata}
+    %{"message" => message, "reason" => reason, "metadata" => metadata}
   end
 
   def translate_error(%DevError{reason: reason, message: message, metadata: metadata}) do
-    %{"message" => message, "reason" => reason, "metdata" => metadata}
+    %{"message" => message, "reason" => reason, "metadata" => metadata}
   end
 
   def translate_error(_err) do
