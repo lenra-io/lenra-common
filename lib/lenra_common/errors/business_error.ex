@@ -6,7 +6,9 @@ defmodule LenraCommon.Errors.BusinessError do
     the second that creates a BusinessError struct and returns it into a tuple.
   """
   @errors [
-    {:forbidden, "Forbidden"}
+    {:forbidden, "Forbidden"},
+    {:nil_json, "JsonHelper cannot get in nil json."},
+    {:integer_array_index, "You need to specify an integer to get an element of an array."}
   ]
 
   use LenraCommon.Errors.ErrorStruct
