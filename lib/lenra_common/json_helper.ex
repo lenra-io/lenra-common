@@ -1,6 +1,6 @@
 defmodule LenraCommon.JsonHelper do
   @moduledoc """
-    JsonHelper give some function that can help with json map
+    JsonHelper gives some function that can help with json maps
   """
   require Logger
   alias LenraCommon.Errors.BusinessError
