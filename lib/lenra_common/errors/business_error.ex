@@ -8,7 +8,7 @@ defmodule LenraCommon.Errors.BusinessError do
   @errors [
     {:forbidden, "Forbidden"},
     {:nil_json, "JsonHelper cannot get in nil json."},
-    {:interger_need_array, "You need to specify interger for get in array."}
+    {:integer_array_index, "You need to specify an integer to get an element of an array."}
   ]
 
   use LenraCommon.Errors.ErrorStruct
