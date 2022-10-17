@@ -37,7 +37,7 @@ defmodule LenraCommon.JsonHelper do
   defp get_in_list(data, h) do
     case Integer.parse(h) do
       :error ->
-        Logger.debug(BusinessError.interger_need_array([data, h]))
+        Logger.debug(BusinessError.integer_array_index([data, h]))
 
       {number, _} ->
         Enum.at(data, number)
