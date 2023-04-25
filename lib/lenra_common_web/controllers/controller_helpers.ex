@@ -41,8 +41,8 @@ defmodule LenraCommonWeb.ControllerHelpers do
 
       _error ->
         conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(TechnicalError.bad_request())
+        |> Plug.Conn.put_status(500)
+        |> add_error(TechnicalError.error_500())
     end
   end
 
