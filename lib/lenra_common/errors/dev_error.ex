@@ -6,7 +6,7 @@ defmodule LenraCommon.Errors.DevError do
   """
   @errors []
 
-  use LenraCommon.Errors.ErrorStruct
+  use LenraCommon.Errors.ErrorStruct, default_status_code: 400
   use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
   def __errors__ do

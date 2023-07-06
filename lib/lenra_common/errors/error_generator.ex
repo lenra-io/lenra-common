@@ -5,7 +5,7 @@ defmodule LenraCommon.Errors.ErrorGenerator do
   """
   defmacro __using__(opts) do
     errors = Keyword.get(opts, :errors, [])
-    module = Keyword.fetch!(opts, :module)
+    module = __CALLER__.module
     inherit = Keyword.get(opts, :inherit, false)
 
     quote do
@@ -55,26 +55,36 @@ defmodule LenraCommon.Errors.ErrorGenerator do
     # See https://hexdocs.pm/elixir/Kernel.SpecialForms.html#quote/2-binding-and-unquote-fragments
     # to explain why we use bind_quoted
     quote bind_quoted: [errors: errors, module: module] do
-      Enum.each(errors, fn {reason, message} ->
+      Enum.each(errors, fn err ->
+        reason = elem(err, 0)
         fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
 
+        IO.inspect(err)
+        err = Macro.escape(err)
+
         def unquote(reason)(metadata \\ %{}) do
-          %unquote(module){
-            message: unquote(message),
-            reason: unquote(reason),
-            metadata: metadata
-          }
+          LenraCommon.Errors.ErrorGenerator.create_struct(unquote(module), metadata, unquote(err))
         end
 
         def unquote(fn_tuple)(metadata \\ %{}) do
-          {:error,
-           %unquote(module){
-             message: unquote(message),
-             reason: unquote(reason),
-             metadata: metadata
-           }}
+          result =
+            LenraCommon.Errors.ErrorGenerator.create_struct(
+              unquote(module),
+              metadata,
+              unquote(err)
+            )
+
+          {:error, result}
         end
       end)
     end
+  end
+
+  def create_struct(mod, metadata, {reason, message}) do
+    struct(mod, message: message, reason: reason, metadata: metadata)
+  end
+
+  def create_struct(mod, metadata, {reason, message, status}) do
+    struct(mod, message: message, reason: reason, metadata: metadata, status_code: status)
   end
 end

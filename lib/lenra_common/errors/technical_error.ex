@@ -12,7 +12,7 @@ defmodule LenraCommon.Errors.TechnicalError do
     {:error_404, "Not Found."},
     {:error_500, "Internal server error."}
   ]
-  use LenraCommon.Errors.ErrorStruct
+  use LenraCommon.Errors.ErrorStruct, default_status_code: 500
   use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
   def __errors__ do

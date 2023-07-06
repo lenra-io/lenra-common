@@ -24,19 +24,10 @@ defmodule LenraCommonWeb.ControllerHelpers do
         |> Plug.Conn.put_status(403)
         |> add_error(BusinessError.forbidden())
 
-      %LenraCommon.Errors.BusinessError{} ->
+      # Should match Business, Technical & Dev errors.
+      %_{status_code: code} ->
         conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
-
-      %LenraCommon.Errors.TechnicalError{} ->
-        conn
-        |> Plug.Conn.put_status(400)
-        |> add_error(error)
-
-      %LenraCommon.Errors.DevError{} ->
-        conn
-        |> Plug.Conn.put_status(400)
+        |> Plug.Conn.put_status(code)
         |> add_error(error)
 
       _error ->
