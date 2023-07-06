@@ -7,7 +7,7 @@ defmodule LenraCommon.Errors.BusinessError do
   """
   @errors [
     {:forbidden, "Forbidden", 403},
-    {:unauthorized, "Forbidden", 401},
+    {:unauthorized, "Unauthorized", 401},
     {:nil_json, "JsonHelper cannot get in nil json."},
     {:integer_array_index, "You need to specify an integer to get an element of an array."}
   ]
