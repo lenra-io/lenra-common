@@ -5,8 +5,8 @@ defmodule LenraCommon.Errors.ErrorGenerator do
   """
   defmacro __using__(opts) do
     errors = Keyword.get(opts, :errors, [])
-    module = __CALLER__.module
     inherit = Keyword.get(opts, :inherit, false)
+    module = __CALLER__.module
 
     quote do
       import LenraCommon.Errors.ErrorGenerator
