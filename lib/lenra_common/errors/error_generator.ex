@@ -55,20 +55,21 @@ defmodule LenraCommon.Errors.ErrorGenerator do
     # See https://hexdocs.pm/elixir/Kernel.SpecialForms.html#quote/2-binding-and-unquote-fragments
     # to explain why we use bind_quoted
     quote bind_quoted: [errors: errors, module: module] do
+      alias LenraCommon.Errors.ErrorGenerator
+
       Enum.each(errors, fn err ->
         reason = elem(err, 0)
         fn_tuple = (Atom.to_string(reason) <> "_tuple") |> String.to_atom()
 
-        IO.inspect(err)
         err = Macro.escape(err)
 
         def unquote(reason)(metadata \\ %{}) do
-          LenraCommon.Errors.ErrorGenerator.create_struct(unquote(module), metadata, unquote(err))
+          ErrorGenerator.create_struct(unquote(module), metadata, unquote(err))
         end
 
         def unquote(fn_tuple)(metadata \\ %{}) do
           result =
-            LenraCommon.Errors.ErrorGenerator.create_struct(
+            ErrorGenerator.create_struct(
               unquote(module),
               metadata,
               unquote(err)
