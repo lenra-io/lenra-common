@@ -8,12 +8,13 @@ defmodule LenraCommon.Errors.TechnicalError do
 
   @errors [
     {:unknown_error, "Unknown error"},
-    {:bad_request, "Server cannot understand or process the request due to a client-side error."},
-    {:error_404, "Not Found."},
-    {:error_500, "Internal server error."}
+    {:bad_request, "Server cannot understand or process the request due to a client-side error.",
+     400},
+    {:error_404, "Not Found.", 404},
+    {:error_500, "Internal server error.", 500}
   ]
-  use LenraCommon.Errors.ErrorStruct
-  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
+  use LenraCommon.Errors.ErrorStruct, default_status_code: 500
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors
 
   def __errors__ do
     @errors
