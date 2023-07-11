@@ -14,7 +14,7 @@ defmodule LenraCommon.Errors.TechnicalError do
     {:error_500, "Internal server error.", 500}
   ]
   use LenraCommon.Errors.ErrorStruct, default_status_code: 500
-  use LenraCommon.Errors.ErrorGenerator, errors: @errors
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
   def __errors__ do
     @errors

@@ -13,7 +13,7 @@ defmodule LenraCommon.Errors.BusinessError do
   ]
 
   use LenraCommon.Errors.ErrorStruct, default_status_code: 400
-  use LenraCommon.Errors.ErrorGenerator, errors: @errors
+  use LenraCommon.Errors.ErrorGenerator, errors: @errors, module: __MODULE__
 
   def __errors__ do
     @errors
