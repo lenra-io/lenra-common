@@ -10,7 +10,10 @@ defmodule LenraCommon.MixProject do
       compilers: [] ++ Mix.compilers(),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
-      deps: deps()
+      description: description(),
+      package: package(),
+      deps: deps(),
+      source_url: repo()
     ]
   end
 
@@ -51,5 +54,21 @@ defmodule LenraCommon.MixProject do
       setup: ["deps.get", "ecto.setup"],
       "assets.deploy": ["esbuild default --minify", "phx.digest"]
     ]
+  end
+
+  defp description() do
+    "This project contains all the common functions of the Lenra elixir projects (server/devtools/application-runner/query-parser). In this project we find the controller & views helper as well as the error handling."
+  end
+
+  defp package() do
+    [
+      # only for private packages organization: "lenra",
+      licenses: ["MIT"],
+      links: %{"GitHub" => repo()}
+    ]
+  end
+
+  defp repo() do
+    "https://github.com/lenra-io/lenra-common"
   end
 end
