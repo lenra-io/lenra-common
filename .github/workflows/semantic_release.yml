@@ -11,8 +11,8 @@ on:
 jobs:
   get-next-version:
     uses: lenra-io/github-actions/.github/workflows/get-version.yml@main
-    secrets:
-      github-token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+    # secrets:
+    #   github-token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
     
   # release:
   #   needs: [get-next-version]
