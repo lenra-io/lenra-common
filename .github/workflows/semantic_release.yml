@@ -12,14 +12,14 @@ jobs:
   get-next-version:
     uses: lenra-io/github-actions/.github/workflows/get-version.yml@main
     secrets:
-      GITHUB_TOKEN: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+      github-token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
     
   # release:
   #   needs: [get-next-version]
   #   if: ${{ needs.get-next-version.outputs.will-release }}
   #   uses: lenra-io/github-actions/.github/workflows/release.yml@main
   #   secrets:
-  #     GITHUB_TOKEN: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+  #     github-token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
   publish:
     name: publish
     needs: [get-next-version]
