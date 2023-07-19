@@ -3,23 +3,39 @@ on:
   push:
     branches:
       - main
+      - rc
       - beta
+      - alpha
       - "*.x"
+
 jobs:
+  get-next-version:
+    uses: lenra-io/github-actions/.github/workflows/get-version.yml@main
+    secrets:
+      token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
   release:
-    name: Release
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
+    needs: [get-next-version]
+    if: ${{ needs.get-next-version.outputs.will-release }}
+    uses: lenra-io/github-actions/.github/workflows/release.yml@main
+    secrets:
+      token: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
+  # publish:
+  #   name: publish
+  #   needs: [get-next-version]
+  #   if: ${{ needs.get-next-version.outputs.will-release }}
+  #   runs-on: ubuntu-latest
+  #   env:
+  #     VERSION: ${{ needs.get-next-version.outputs.version }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: "14"
-      - name: Setup node deps
-        run: npm i conventional-changelog-conventionalcommits@4 -D
-      - name: Release
-        env:
-          GITHUB_TOKEN: ${{ secrets.WORKFLOW_GITHUB_TOKEN }}
-        run: npx semantic-release@18
+      - name: Checkout Code
+        uses: actions/checkout@v3
+      - name: Set version
+        shell: bash
+        run: 'sed -i -r "s/version: \"[0-9]+(\.[0-9]+){2}\"/version: \"${{ env.VERSION }}\"/g" mix.exs'
+      - name: Set version
+        shell: bash
+        run: 'cat mix.exs'
+      # - name: Publish package to hex.pm
+      #   uses: wesleimp/action-publish-hex@v1
+      #   env:
+      #     HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
