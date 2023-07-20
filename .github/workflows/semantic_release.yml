@@ -42,6 +42,9 @@ jobs:
             _build
           key: ${{ runner.os }}-mix-${{ hashFiles('**/mix.lock') }}
           restore-keys: ${{ runner.os }}-mix-
+      - name: Get dependencies
+        shell: bash
+        run: mix deps.get
       - name: Publish package to hex.pm
         shell: bash
         run: mix hex.publish --yes
