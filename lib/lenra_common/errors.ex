@@ -28,8 +28,7 @@ defmodule LenraCommon.Errors do
 
   defp format_stacktrace({:current_stacktrace, stacktrace}) do
     stacktrace
-    |> Enum.map(&format_stacktrace_line/1)
-    |> Enum.join("\n")
+    |> Enum.map_join(&format_stacktrace_line/1, "\n")
   end
 
   defp format_stacktrace_line({module, method, argNum, [file: file, line: line]}) do
