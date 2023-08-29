@@ -4,30 +4,43 @@ defmodule LenraCommon.Errors do
   """
   require Logger
 
-  def log(error) when is_struct(error) do
-    [
-      error.message,
-      "\n",
-      format_stacktrace(Process.info(self(), :current_stacktrace)),
-      "\n"
-    ]
-    |> Enum.join()
-    |> Logger.error()
-  end
-
+  @deprecated "Use format_error_with_stacktrace/1 instead"
   def log(error) do
-    [
-      to_string(error),
-      "\n",
-      format_stacktrace(Process.info(self(), :current_stacktrace)),
-      "\n"
-    ]
-    |> Enum.join()
+    error
+    |> format_error_with_stacktrace()
     |> Logger.error()
   end
 
-  defp format_stacktrace({:current_stacktrace, stacktrace}) do
-    Enum.map_join(stacktrace, "\n", &format_stacktrace_line/1)
+  @doc """
+  Formats error to string.
+  """
+  def format_error(error) when is_struct(error) do
+    error.message
+  end
+
+  def format_error(error) do
+    to_string(error)
+  end
+
+  @doc """
+  Formats error with stacktrace to string.
+  """
+  def format_error_with_stacktrace(error) do
+    [
+      format_error(error),
+      "\n",
+      format_stacktrace(Process.info(self(), :current_stacktrace))
+    ]
+    |> Enum.join()
+  end
+
+  @doc """
+  Formats stacktrace to string.
+  """
+  def format_stacktrace({_, stacktrace}) do
+    stacktrace
+    |> Enum.slice(2..-1)
+    |> Enum.map_join("\n", &format_stacktrace_line/1)
   end
 
   defp format_stacktrace_line({module, method, argNum, [file: file, line: line]}) do
