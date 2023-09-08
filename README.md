@@ -7,6 +7,8 @@
 *** Thanks again! Now go create something AMAZING! :D
 -->
 
+# This project is deprecated and its content have been moved to [lenra server](/lenra-io/server/libs/lenra_common)
+
 
 
 <!-- PROJECT SHIELDS -->
